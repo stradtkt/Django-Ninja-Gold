@@ -1,0 +1,85 @@
+{% extends 'ninja/layout.html' %}
+{% block title %} {{block.super}} | Django {% endblock %}
+{% block body %} 
+
+<div class="row">
+    <div class="col-lg-3">
+    <div class="card" style="width: 18rem;">
+        {% load staticfiles %}
+        <img class="card-img-top" src="{% static 'ninja/img/farm.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Farm</h5>
+            <p class="card-text">(Earns 10-20 gold)</p>
+            <form action="process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="farm">
+                <button class="btn btn-primary">Find Gold!</button>
+              </form>
+        </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    <div class="card" style="width: 18rem;">
+        {% load staticfiles %}
+        <img class="card-img-top" src="{% static 'ninja/img/cave.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Cave</h5>
+            <p class="card-text">(Earns 5-10 gold)</p>
+            <form action="process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="cave">
+                <button class="btn btn-primary">Find Gold!</button>
+              </form>
+        </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    <div class="card" style="width: 18rem;">
+        {% load staticfiles %}
+        <img class="card-img-top" src="{% static 'ninja/img/house.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">House</h5>
+            <p class="card-text">(Earns 2-5 gold)</p>
+            <form action="process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="house">
+                <button class="btn btn-primary">Find Gold!</button>
+              </form>
+        </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+    <div class="card" style="width: 18rem;">
+        {% load staticfiles %}
+        <img class="card-img-top" src="{% static 'ninja/img/casino.png' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Casino</h5>
+            <p class="card-text">(Earn/Takes 0-50 gold)</p>
+            <form action="process" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="location" value="casino">
+                <button class="btn btn-primary">Find Gold!</button>
+              </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="append-text mt-5 mb-2">
+            {% if 'append' in request.session %}
+                {% for i in request.session.append %}
+                <p>{{i}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <a href="reset" class="btn btn-block btn-primary">Reset</a>
+    </div>
+</div>
+
+{% endblock %}
